@@ -221,6 +221,18 @@ export default [
 		`,
 	}),
 	basicTest({
+		name: "location-history-omitted-url",
+		js: `
+			const initialUrl = location.href;
+			history.pushState({ pushed: true }, "");
+			assertEqual(location.href, initialUrl, "pushState without a URL keeps the current URL");
+			assertDeepEqual(history.state, { pushed: true }, "pushState without a URL still updates state");
+			history.replaceState({ replaced: true }, "");
+			assertEqual(location.href, initialUrl, "replaceState without a URL keeps the current URL");
+			assertDeepEqual(history.state, { replaced: true }, "replaceState without a URL still updates state");
+		`,
+	}),
+	basicTest({
 		name: "location-history-popstate",
 		js: `
 			history.pushState({ step: 1 }, "", "/step1");

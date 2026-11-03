@@ -176,7 +176,7 @@ class TypeScriptDeclarationsPlugin {
 					console.log(`Generating TypeScript declarations for ${this.dir}...`);
 					try {
 						const { stdout, stderr } = await execAsync(
-							`pnpm exec tsc --project ${this.tsconfigName}`,
+							`corepack pnpm exec tsc --project ${this.tsconfigName}`,
 							{ cwd: this.dir }
 						);
 						if (stdout) console.log(stdout);
@@ -193,7 +193,7 @@ class TypeScriptDeclarationsPlugin {
 
 					if (this.useAlias) {
 						const aliasResult = await execAsync(
-							`pnpm exec tsc-alias --project ${this.tsconfigName}`,
+							`corepack pnpm exec tsc-alias --project ${this.tsconfigName}`,
 							{ cwd: this.dir }
 						);
 						if (aliasResult.stdout) console.log(aliasResult.stdout);
